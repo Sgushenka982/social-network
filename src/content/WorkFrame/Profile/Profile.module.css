@@ -1,0 +1,10 @@
+.content{
+    padding: 50px;
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+    grid-template-rows: repeat(3,1fr);
+}
+.photo{
+    grid-row: span 3;
+}
+

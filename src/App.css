@@ -1,0 +1,41 @@
+.App{
+  display: grid;
+  grid-template-columns: 1fr 7fr;
+  grid-template-rows: 5% 85% 10%;;
+  padding: 40px;
+  
+}
+
+.testContainer{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.btn-reset{
+  text-align: center;
+  grid-column-start: 3;
+  justify-self: center;
+  width:160px;
+  height: 50px;
+  margin-top: 20px;
+  border-radius: 1.5rem;
+  border: 1px solid rgb(0, 0, 0);
+}
+.btn-reset:focus{
+  outline: none;
+}
+
+#postIndex{
+  display: block;
+  width: 240px;
+    height: 30px;
+    padding: 10px 20px;
+    font-family: Helvetica, sans-serif;
+    font-weight: 300;
+    font-size: 16px;
+    border: 1px solid #aaa;
+    border-radius: 4px;
+}
+#postIndex:focus{
+  outline:none;
+}

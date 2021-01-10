@@ -1,0 +1,14 @@
+.header{
+    height: 30px;   
+    border-bottom: 1.5px solid white;
+    display: flex;
+    justify-content: space-between;
+}
+
+.header a {
+    color: white;
+}
+
+.logo{
+    width: 50px;
+}

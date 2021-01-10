@@ -1,0 +1,8 @@
+.item{
+    grid-column-start: 2;
+    grid-row: 1/span 3;
+    background-color: #f1f5f8 ;
+    height: 600px;
+    border-radius: 2rem;
+    padding: 40px;
+}
