@@ -21,7 +21,6 @@ class Autocomplete extends React.Component {
 
     // Teach Autosuggest how to calculate suggestions for any given input value.
     getSuggestions = (value) => {
-        debugger
         // const inputValue = value.trim().toLowerCase();
         // const inputLength = inputValue.length;
         const object = this.props.suggestObject;

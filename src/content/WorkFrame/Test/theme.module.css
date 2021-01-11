@@ -15,7 +15,7 @@
     outline: none;
 }
 .inputOpen {
-   border-radius: 4px 4px 0px 0px;
+   border-radius: 4px 4px 0 0;
 }
 
 .input[readonly]{
@@ -33,9 +33,9 @@
     background-color: #fff;
     font-family: Helvetica, sans-serif;
     font-weight: 300;
-    font-Size: 16;
-    border-radius: 0px 0px 4px 4px;
-    z-index: 2;
+    font-Size: 16px;
+    border-radius: 0 0 4px 4px;
+    z-index: 3;
 }
 .suggestionsList {
     margin: 0;

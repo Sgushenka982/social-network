@@ -39,3 +39,44 @@
 #postIndex:focus{
   outline:none;
 }
+
+.close{
+  position:absolute;
+  padding:0 7px;
+  right:0;
+  /*position: absolute;*/
+  top: 12%;
+  /*right: 16%;*/
+  width: 12px;
+  height: 12px;
+  z-index: 2;
+  opacity: 0.3;
+}
+
+.close:hover{
+  opacity: 1;
+  cursor: pointer;
+}
+
+.close:after, .close:before{
+  position:absolute;
+  left:15px;
+  content: '';
+  height: 13px;
+  width: 2px;
+  border-radius: 4px;
+  background-color: #333;
+}
+.close:after{
+  transform: rotate(-45deg);
+}
+.close:before{
+  transform: rotate(45deg);
+}
+
+.autocompleteContainer{
+  width:280px;
+  position:relative;
+}
+
+
