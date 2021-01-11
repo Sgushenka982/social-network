@@ -275,7 +275,7 @@ const testFiasReducer = (state = initialState, action) => {
                         object: '',
                         suggestObject:[],
                         value:'',
-                        readonly: true
+                        readonly: false
                     },
                     settlement: {
                         ...state.adress.settlement,
@@ -368,14 +368,14 @@ const testFiasReducer = (state = initialState, action) => {
                         object: '',
                         suggestObject:[],
                         value:'',
-                        readonly: true
+                        readonly: false
                     },
                     village: {
                         ...state.adress.village,
                         object: '',
                         suggestObject:[],
                         value:'',
-                        readonly: true
+                        readonly: false
                     },
                     street: {
                         ...state.adress.street,
@@ -420,6 +420,14 @@ const testFiasReducer = (state = initialState, action) => {
                     },
                     street: {
                         ...state.adress.street,
+                        readonly: false
+                    },
+                    building: {
+                        ...state.adress.building,
+                        readonly: false
+                    },
+                    apartment: {
+                        ...state.adress.apartment,
                         readonly: false
                     }
                 }
@@ -471,6 +479,10 @@ const testFiasReducer = (state = initialState, action) => {
                 ...state,
                 adress: {
                     ...state.adress,
+                    city: {
+                        ...state.adress.city,
+                        readonly: true
+                    },
                     settlement: {
                         ...state.adress.settlement,
                         readonly: true
@@ -482,6 +494,14 @@ const testFiasReducer = (state = initialState, action) => {
                     },
                     street: {
                         ...state.adress.street,
+                        readonly: false
+                    },
+                    building: {
+                        ...state.adress.building,
+                        readonly: false
+                    },
+                    apartment: {
+                        ...state.adress.apartment,
                         readonly: false
                     }
                 }
@@ -582,10 +602,22 @@ const testFiasReducer = (state = initialState, action) => {
                 ...state,
                 adress: {
                     ...state.adress,
-                    // street: {
-                    //     ...state.adress.street,
-                    //     readonly: true
-                    // },
+                    city: {
+                        ...state.adress.city,
+                        readonly: true
+                    },
+                    settlement: {
+                        ...state.adress.settlement,
+                        readonly: true
+                    },
+                    village: {
+                        ...state.adress.village,
+                        readonly: true
+                    },
+                    street: {
+                        ...state.adress.street,
+                        readonly: true
+                    },
                     building: {
                         ...state.adress.building,
                         object: action.building,

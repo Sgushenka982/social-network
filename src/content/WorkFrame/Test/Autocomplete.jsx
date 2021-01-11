@@ -104,6 +104,15 @@ class Autocomplete extends React.Component {
                 }
                 return null
             case 'building':
+                if(this.props.adress.street.object !== ''){
+                    this.getObject(this.props.adress.street.object.id, newValue)
+                }else if(this.props.adress.village.object !== ''){
+                    this.getObject(this.props.adress.village.object.id, newValue)
+                }else if(this.props.adress.settlement.object !== ''){
+                    this.getObject(this.props.adress.settlement.object.id, newValue)
+                }else if(this.props.adress.city.object !== ''){
+                    this.getObject(this.props.adress.city.object.id, newValue)
+                }
                 this.getObject(this.props.adress.street.object.id, newValue)
                 return null
             case 'apartment':
