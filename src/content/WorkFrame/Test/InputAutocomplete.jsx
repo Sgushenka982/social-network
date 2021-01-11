@@ -10,7 +10,15 @@ let InputAutocomplete = (props) => {
         <div >
             <label htmlFor={props.contentType}>{props.label}</label>
             <div className="autocompleteContainer">
-                <span className="close" onClick={reset}></span>
+                <span
+                    className="close"
+                    onClick={
+                        props.adress.region.value !== ''
+                            ? reset
+                            : null
+                    }>
+
+                </span>
                 <Autocomplete {...props} />
             </div>
         </div>

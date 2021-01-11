@@ -17,7 +17,7 @@ const SETTLEMENT_RESET = 'SETTLEMENT_RESET'
 const VILLAGE_RESET = 'VILLAGE_RESET'
 const STREET_RESET = 'STREET_RESET'
 const BUILDING_RESET = 'BUILDING_RESET'
-const APARTAMENT_RESET = 'APARTAMENT_RESET'
+const APARTMENT_RESET = 'APARTMENT_RESET'
 
 
 
@@ -36,7 +36,7 @@ const villageReset = ()=>({type:VILLAGE_RESET})
 const buildingChange = (building) => ({ type: BUILDING_CHANGE, building });
 const buildingReset = ()=>({type:BUILDING_RESET})
 const apartmentChange = (apartment) => ({ type: APARTAMENT_CHANGE, apartment });
-const apartmentReset = ()=>({type:APARTAMENT_RESET})
+const apartmentReset = ()=>({type:APARTMENT_RESET})
 const setValue = (value, contentType) => ({ type: SET_VALUE, value, contentType });
 export const resetValue = () => ({ type: RESET_VALUE });
 export const setObject = (objects, contentType) => ({ type: SET_OBJECT, objects, contentType });
@@ -138,10 +138,170 @@ let initialState = {
             setValue
         }
     },
-    index: ''
+    post_Index: ''
 }
 
 const testFiasReducer = (state = initialState, action) => {
+    const resetToStart = {
+        ...state,
+        adress:{
+            ...state.adress,
+            region:{
+                ...state.adress.region,
+                object: '',
+                suggestObject:[],
+                value:'',
+                readonly: false
+            },
+            district: {
+                ...state.adress.district,
+                object: '',
+                suggestObject:[],
+                value:'',
+                readonly: true
+            },
+            city: {
+                ...state.adress.city,
+                object: '',
+                suggestObject:[],
+                value:'',
+                readonly: true
+            },
+            settlement: {
+                ...state.adress.settlement,
+                object: '',
+                suggestObject:[],
+                value:'',
+                readonly: true
+            },
+            village: {
+                ...state.adress.village,
+                object: '',
+                suggestObject:[],
+                value:'',
+                readonly: true
+            },
+            street: {
+                ...state.adress.street,
+                object: '',
+                suggestObject:[],
+                value:'',
+                readonly: true
+            },
+            building: {
+                ...state.adress.building,
+                object: '',
+                suggestObject:[],
+                extra:'',
+                value:'',
+                readonly: true
+            },
+            apartment: {
+                ...state.adress.apartment,
+                object: '',
+                suggestObject:[],
+                value:'',
+                readonly: true
+            }
+        }
+    }
+    const resetDistrictCity = {
+        ...state,
+        adress:{
+            ...state.adress,
+            district: {
+                ...state.adress.district,
+                object: '',
+                suggestObject:[],
+                value:'',
+                readonly: false
+            },
+            city: {
+                ...state.adress.city,
+                object: '',
+                suggestObject:[],
+                value:'',
+                readonly: false
+            },
+            settlement: {
+                ...state.adress.settlement,
+                object: '',
+                suggestObject:[],
+                value:'',
+                readonly: true
+            },
+            village: {
+                ...state.adress.village,
+                object: '',
+                suggestObject:[],
+                value:'',
+                readonly: true
+            },
+            street: {
+                ...state.adress.street,
+                object: '',
+                suggestObject:[],
+                value:'',
+                readonly: true
+            },
+            building: {
+                ...state.adress.building,
+                object: '',
+                suggestObject:[],
+                extra:'',
+                value:'',
+                readonly: true
+            },
+            apartment: {
+                ...state.adress.apartment,
+                object: '',
+                suggestObject:[],
+                value:'',
+                readonly: true
+            }
+        }
+    }
+    const resetOthersField ={
+        ...state,
+        adress:{
+            ...state.adress,
+            settlement: {
+                ...state.adress.settlement,
+                object: '',
+                suggestObject:[],
+                value:'',
+                readonly: false
+            },
+            village: {
+                ...state.adress.village,
+                object: '',
+                suggestObject:[],
+                value:'',
+                readonly: false
+            },
+            street: {
+                ...state.adress.street,
+                object: '',
+                suggestObject:[],
+                value:'',
+                readonly: false
+            },
+            building: {
+                ...state.adress.building,
+                object: '',
+                suggestObject:[],
+                extra:'',
+                value:'',
+                readonly: false
+            },
+            apartment: {
+                ...state.adress.apartment,
+                object: '',
+                suggestObject:[],
+                value:'',
+                readonly: false
+            }
+        }}
     switch (action.type) {
         case REGION_CHANGE:
             return {
@@ -164,68 +324,7 @@ const testFiasReducer = (state = initialState, action) => {
                 }
             }
         case REGION_RESET:
-            return{
-                ...state,
-                adress:{
-                    ...state.adress,
-                    region:{
-                        ...state.adress.region,
-                        object: '',
-                        suggestObject:[],
-                        value:'',
-                        readonly: false
-                    },
-                    district: {
-                        ...state.adress.district,
-                        object: '',
-                        suggestObject:[],
-                        value:'',
-                        readonly: true
-                    },
-                    city: {
-                        ...state.adress.city,
-                        object: '',
-                        suggestObject:[],
-                        value:'',
-                        readonly: true
-                    },
-                    settlement: {
-                        ...state.adress.settlement,
-                        object: '',
-                        suggestObject:[],
-                        value:'',
-                        readonly: true
-                    },
-                    village: {
-                        ...state.adress.village,
-                        object: '',
-                        suggestObject:[],
-                        value:'',
-                        readonly: true
-                    },
-                    street: {
-                        ...state.adress.street,
-                        object: '',
-                        suggestObject:[],
-                        value:'',
-                        readonly: true
-                    },
-                    building: {
-                        ...state.adress.building,
-                        object: '',
-                        suggestObject:[],
-                        value:'',
-                        readonly: true
-                    },
-                    apartment: {
-                        ...state.adress.apartment,
-                        object: '',
-                        suggestObject:[],
-                        value:'',
-                        readonly: true
-                    }
-                }
-        }
+            return resetToStart
         case DISTRICT_CHANGE:
             return {
                 ...state,
@@ -259,61 +358,7 @@ const testFiasReducer = (state = initialState, action) => {
                 }
             }
         case DISTRICT_RESET:
-            return{
-                ...state,
-                adress:{
-                    ...state.adress,
-                    district: {
-                        ...state.adress.district,
-                        object: '',
-                        suggestObject:[],
-                        value:'',
-                        readonly: false
-                    },
-                    city: {
-                        ...state.adress.city,
-                        object: '',
-                        suggestObject:[],
-                        value:'',
-                        readonly: false
-                    },
-                    settlement: {
-                        ...state.adress.settlement,
-                        object: '',
-                        suggestObject:[],
-                        value:'',
-                        readonly: true
-                    },
-                    village: {
-                        ...state.adress.village,
-                        object: '',
-                        suggestObject:[],
-                        value:'',
-                        readonly: true
-                    },
-                    street: {
-                        ...state.adress.street,
-                        object: '',
-                        suggestObject:[],
-                        value:'',
-                        readonly: true
-                    },
-                    building: {
-                        ...state.adress.building,
-                        object: '',
-                        suggestObject:[],
-                        value:'',
-                        readonly: true
-                    },
-                    apartment: {
-                        ...state.adress.apartment,
-                        object: '',
-                        suggestObject:[],
-                        value:'',
-                        readonly: true
-                    }
-                }
-            }
+            return resetDistrictCity
         case CITY_CHANGE:
             return {
                 ...state,
@@ -352,54 +397,7 @@ const testFiasReducer = (state = initialState, action) => {
                 }
             }
         case CITY_RESET:
-            return{
-                ...state,
-                adress:{
-                    ...state.adress,
-                    city: {
-                        ...state.adress.city,
-                        object: '',
-                        suggestObject:[],
-                        value:'',
-                        readonly: false
-                    },
-                    settlement: {
-                        ...state.adress.settlement,
-                        object: '',
-                        suggestObject:[],
-                        value:'',
-                        readonly: false
-                    },
-                    village: {
-                        ...state.adress.village,
-                        object: '',
-                        suggestObject:[],
-                        value:'',
-                        readonly: false
-                    },
-                    street: {
-                        ...state.adress.street,
-                        object: '',
-                        suggestObject:[],
-                        value:'',
-                        readonly: true
-                    },
-                    building: {
-                        ...state.adress.building,
-                        object: '',
-                        suggestObject:[],
-                        value:'',
-                        readonly: true
-                    },
-                    apartment: {
-                        ...state.adress.apartment,
-                        object: '',
-                        suggestObject:[],
-                        value:'',
-                        readonly: true
-                    }
-                }
-            }
+            return resetDistrictCity
         case SETTLEMENT_CHANGE:
             return {
                 ...state,
@@ -433,47 +431,7 @@ const testFiasReducer = (state = initialState, action) => {
                 }
             }
         case SETTLEMENT_RESET:
-            return {
-                ...state,
-                adress:{
-                    ...state.adress,
-                    settlement: {
-                        ...state.adress.settlement,
-                        object: '',
-                        suggestObject:[],
-                        value:'',
-                        readonly: false
-                    },
-                    village: {
-                        ...state.adress.village,
-                        object: '',
-                        suggestObject:[],
-                        value:'',
-                        readonly: true
-                    },
-                    street: {
-                        ...state.adress.street,
-                        object: '',
-                        suggestObject:[],
-                        value:'',
-                        readonly: true
-                    },
-                    building: {
-                        ...state.adress.building,
-                        object: '',
-                        suggestObject:[],
-                        value:'',
-                        readonly: true
-                    },
-                    apartment: {
-                        ...state.adress.apartment,
-                        object: '',
-                        suggestObject:[],
-                        value:'',
-                        readonly: true
-                    }
-                }
-            }
+            return resetOthersField
         case VILLAGE_CHANGE:
             return {
                 ...state,
@@ -507,40 +465,7 @@ const testFiasReducer = (state = initialState, action) => {
                 }
             }
         case VILLAGE_RESET:
-            return {
-                ...state,
-                adress:{
-                    ...state.adress,
-                    village: {
-                        ...state.adress.village,
-                        object: '',
-                        suggestObject:[],
-                        value:'',
-                        readonly: false
-                    },
-                    street: {
-                        ...state.adress.street,
-                        object: '',
-                        suggestObject:[],
-                        value:'',
-                        readonly: true
-                    },
-                    building: {
-                        ...state.adress.building,
-                        object: '',
-                        suggestObject:[],
-                        value:'',
-                        readonly: true
-                    },
-                    apartment: {
-                        ...state.adress.apartment,
-                        object: '',
-                        suggestObject:[],
-                        value:'',
-                        readonly: true
-                    }
-                }
-            }
+            return resetOthersField
         case STREET_CHANGE:
             return {
                 ...state,
@@ -570,33 +495,7 @@ const testFiasReducer = (state = initialState, action) => {
                 }
             }
         case STREET_RESET:
-            return{
-                ...state,
-                adress:{
-                    ...state.adress,
-                    street: {
-                        ...state.adress.street,
-                        object: '',
-                        suggestObject:[],
-                        value:'',
-                        readonly: false
-                    },
-                    building: {
-                        ...state.adress.building,
-                        object: '',
-                        suggestObject:[],
-                        value:'',
-                        readonly: true
-                    },
-                    apartment: {
-                        ...state.adress.apartment,
-                        object: '',
-                        suggestObject:[],
-                        value:'',
-                        readonly: true
-                    }
-                }
-            }
+            return resetOthersField
         case BUILDING_CHANGE:
             return {
                 ...state,
@@ -631,26 +530,7 @@ const testFiasReducer = (state = initialState, action) => {
                 }
             }
         case BUILDING_RESET:
-            return {
-                ...state,
-                adress:{
-                    ...state.adress,
-                    building: {
-                        ...state.adress.building,
-                        object: '',
-                        suggestObject:[],
-                        value:'',
-                        readonly: false
-                    },
-                    apartment: {
-                        ...state.adress.apartment,
-                        object: '',
-                        suggestObject:[],
-                        value:'',
-                        readonly: true
-                    }
-                }
-            }
+            return resetOthersField
         case APARTAMENT_CHANGE:
             return {
                 ...state,
@@ -663,20 +543,8 @@ const testFiasReducer = (state = initialState, action) => {
                     }
                 }
             }
-        case APARTAMENT_RESET:
-            return {
-                ...state,
-                adress:{
-                    ...state.adress,
-                    apartment: {
-                        ...state.adress.apartment,
-                        object: '',
-                        suggestObject:[],
-                        value:'',
-                        readonly: false
-                    }
-                }
-            }
+        case APARTMENT_RESET:
+            return resetOthersField
         case SET_OBJECT:
             let myType = action.contentType
             return {
@@ -704,75 +572,15 @@ const testFiasReducer = (state = initialState, action) => {
             return ret
         case RESET_VALUE:
             return {
-                ...state,
-                adress: {
-                    ...state.adress,
-                    region: {
-                        ...state.adress.region,
-                        readonly: false,
-                        object: '',
-                        suggestObject:[],
-                        value: ''
-                    },
-                    district: {
-                        ...state.adress.district,
-                        readonly: true,
-                        object: '',
-                        suggestObject:[],
-                        value: ''
-                    },
-                    city: {
-                        ...state.adress.city,
-                        readonly: true,
-                        object: '',
-                        suggestObject:[],
-                        value: ''
-                    },
-                    settlement: {
-                        ...state.adress.settlement,
-                        readonly: true,
-                        object: '',
-                        suggestObject:[],
-                        value: ''
-                    },
-                    village: {
-                        ...state.adress.village,
-                        readonly: true,
-                        object: '',
-                        suggestObject:[],
-                        value: ''
-                    },
-                    street: {
-                        ...state.adress.street,
-                        readonly: true,
-                        object: '',
-                        suggestObject:[],
-                        value: ''
-                    },
-                    building: {
-                        ...state.adress.building,
-                        readonly: true,
-                        object: '',
-                        suggestObject:[],
-                        extra:'',
-                        value: ''
-                    },
-                    apartment: {
-                        ...state.adress.apartment,
-                        readonly: true,
-                        object: '',
-                        suggestObject:[],
-                        value: ''
-                    }
-                },
-                index:''
+                ...resetToStart,
+                post_Index:''
             }
         case SET_INDEX_VALUE:
+            debugger
             return {
                 ...state,
-                index: action.index
+                post_Index: action.index
             }
-
         default:
             return state;
     }
