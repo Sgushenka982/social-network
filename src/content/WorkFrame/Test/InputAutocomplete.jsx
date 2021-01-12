@@ -3,7 +3,7 @@ import Autocomplete from './Autocomplete';
 import {connect} from "react-redux";
 
 let InputAutocomplete = (props) => {
-    let reset=()=>{
+    const reset=()=>{
         props.test3(props.resetFunc())
     }
     return (
