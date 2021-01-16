@@ -3,6 +3,8 @@ import { profileAPI } from '../api/api'
 const ADD_POST = 'ADD_POST';
 const UPDATE_NEW_POST_TEXT = 'UPDATE_NEW_POST_TEXT';
 const SET_USER_PROFILE = 'SET_USER_PROFILE';
+const SET_STATUS = 'SET_STATUS';
+
 
 
 let initialState = {
@@ -12,7 +14,8 @@ let initialState = {
         { id: 3, message: 'Когда уже пойму реакт', likeCount: 123 }
     ],
     newPostText: '',
-    profile: null
+    profile: null,
+    status:''
 }
 
 const profileReducer = (state = initialState, action) => {
@@ -34,6 +37,11 @@ const profileReducer = (state = initialState, action) => {
                 ...state,
                 newPostText: action.newText
             }
+        case SET_STATUS:
+            return {
+                ...state,
+                status: action.status
+            }
         case SET_USER_PROFILE: {
             return {
                 ...state,
@@ -48,9 +56,18 @@ const profileReducer = (state = initialState, action) => {
 export const addPost = () => ({ type: ADD_POST });
 export const updateNewPost = (text) => ({ type: UPDATE_NEW_POST_TEXT, newText: text });
 export const setUserProfile = (profile) => ({ type: SET_USER_PROFILE, profile });
+export const setStatus = (status) => ({ type: SET_STATUS, status });
 
 export const getProfile = (userId) => (dispatch) => {
-    profileAPI.getProgile(userId).then(response => { dispatch(setUserProfile(response.data)) })
+    profileAPI.getProfile(userId).then(response => { dispatch(setUserProfile(response.data)) })
+}
+export const getUserStatus = (userId) => (dispatch) => {
+    profileAPI.getSatus(userId).then(response => { dispatch(setStatus(response.data)) })
+}
+export const updateUserStatus = (status) => (dispatch) => {
+    profileAPI.updateStatus(status).then(response => {
+            if(response.data.resultCode === 0 ){dispatch(setStatus(status))}
+        })
 }
 
 export default profileReducer

@@ -20,7 +20,6 @@ const Profile = (props) => {
             <Preloader />
         )
     }
-
     return (
         <div>
             <div className={s.content}>
@@ -33,7 +32,7 @@ const Profile = (props) => {
                 <div>{props.profile.fullName}</div>
                 <div>{props.profile.lookingForAJobDescription}</div>
             </div>
-            <ProfileStatus status='Hello my friend'/>
+            <ProfileStatus status={props.state.status} updateUserStatus={props.updateUserStatus}/>
             <h3>My posts</h3>
             <div >
                 <input type="text" onChange={onPostChange} ref={newPostElement} value={props.state.newPostText} />
