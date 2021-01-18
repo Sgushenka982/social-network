@@ -36,5 +36,11 @@ export const profileAPI = {
 export const authAPI = {
     authUser() {
         return instance.get(`auth/me`).then(response => response.data)
+    },
+    loginUser(formData){
+        return instance.put('auth/login',{formData})
+    },
+    unloginUser(){
+        return instance.delete('auth/login')
     }
 }

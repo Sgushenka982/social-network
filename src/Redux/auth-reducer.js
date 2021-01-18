@@ -35,5 +35,21 @@ export const authUser =()=> (dispatch) => {
         }
     })
 }
+export const loginUser =(formData)=>(dispatch)=>{
+    debugger
+    authAPI.loginUser(formData).then(response=>{
+        if(response.resultCode === 0){
+            dispatch()
+        }
+    })
+}
+
+export const unloginUser =()=>(dispatch)=>{
+    authAPI.unloginUser().then(response=>{
+        if(response.resultCode === 0){
+            dispatch()
+        }
+    })
+}
 
 export default authReducer;

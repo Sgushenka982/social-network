@@ -2,18 +2,10 @@ import React from 'react';
 import s from './Profile.module.css';
 import Preloader from '../../Common/Preloader/Preloader';
 import ProfileStatus from './ProfileStatus'
+import SendPost from "./SendPost";
 
 const Profile = (props) => {
     let postElement = props.state.posts.map(p => <p id={p.id} key={p.id}>{p.message}</p>)
-    let newPostElement = React.createRef()
-
-    let addPost = () => {
-        props.addPost()
-    }
-    let onPostChange = () => {
-        let text = newPostElement.current.value
-        props.updateNewPost(text)
-    }
 
     if (!props.profile) {
         return (
@@ -34,10 +26,7 @@ const Profile = (props) => {
             </div>
             <ProfileStatus status={props.state.status} updateUserStatus={props.updateUserStatus}/>
             <h3>My posts</h3>
-            <div >
-                <input type="text" onChange={onPostChange} ref={newPostElement} value={props.state.newPostText} />
-                <button onClick={addPost}>add post</button>
-            </div>
+            <SendPost addPost={props.addPost}/>
             {postElement}
         </div>
 
