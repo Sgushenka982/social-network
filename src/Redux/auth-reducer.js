@@ -17,37 +17,35 @@ const authReducer = (state = initialState, action) => {
 
             return {
                 ...state,
-                ...action.data,
-                isAuth: true
+                ...action.payload
             }
         default:
             return state;
     }
 
 }
-export const setAuthUserData = (userId, email, login) => ({ type: SET_USER_DATA, data: { userId, email, login } })
+export const setAuthUserData = (userId, email, login, isAuth) => ({ type: SET_USER_DATA, payload: { userId, email, login, isAuth } })
 
 export const authUser =()=> (dispatch) => {
     authAPI.authUser().then(response => {
         if (response.resultCode === 0) {
             let { id, email, login } = response.data;
-            dispatch(setAuthUserData(id, email, login));
+            dispatch(setAuthUserData(id, email, login,true));
         }
     })
 }
-export const loginUser =(formData)=>(dispatch)=>{
-    debugger
-    authAPI.loginUser(formData).then(response=>{
-        if(response.resultCode === 0){
-            dispatch()
+export const loginUser =(email,passaword,rememberMe)=>(dispatch)=>{
+    authAPI.loginUser(email,passaword,rememberMe).then(response=>{
+        if(response.data.resultCode === 0){
+            dispatch(authUser())
         }
     })
 }
 
-export const unloginUser =()=>(dispatch)=>{
-    authAPI.unloginUser().then(response=>{
-        if(response.resultCode === 0){
-            dispatch()
+export const logoutUser =()=>(dispatch)=>{
+    authAPI.logoutUser().then(response=>{
+        if(response.data.resultCode === 0){
+            dispatch(setAuthUserData(null, null, null,false))
         }
     })
 }
