@@ -5,6 +5,7 @@ import {loginUser} from '../../../Redux/auth-reducer'
 import {Input} from "../../Common/FormControls/FormControl";
 import {required} from "../../../utils/validators/validators";
 import {Redirect} from "react-router-dom";
+import styles from './../../Common/FormControls/formControl.module.css'
 
 
 const LoginForm=(props)=> {
@@ -17,6 +18,10 @@ const LoginForm=(props)=> {
                 <span>Remember me</span>
             </div>
             <div><button>login</button></div>
+            {props.error &&
+            <div className={styles.errorForm}>
+                {props.error}
+            </div>}
         </form>
     )
 }
