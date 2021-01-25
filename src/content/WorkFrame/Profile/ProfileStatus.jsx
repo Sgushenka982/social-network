@@ -1,6 +1,6 @@
-import React from 'react';
+import React,{PureComponent} from 'react';
 
-class ProfileStatus extends React.Component{
+class ProfileStatus extends PureComponent{
     state={
         editMode:false,
         status:this.props.status
