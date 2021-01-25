@@ -3,6 +3,7 @@ import s from './Profile.module.css';
 import Preloader from '../../Common/Preloader/Preloader';
 import ProfileStatus from './ProfileStatus'
 import SendPost from "./SendPost";
+import ProfileStatusWithHooks from "./ProfileStatusWithHooks";
 
 const Profile = (props) => {
     let postElement = props.state.posts.map(p => <p id={p.id} key={p.id}>{p.message}</p>)
@@ -24,7 +25,7 @@ const Profile = (props) => {
                 <div>{props.profile.fullName}</div>
                 <div>{props.profile.lookingForAJobDescription}</div>
             </div>
-            <ProfileStatus status={props.state.status} updateUserStatus={props.updateUserStatus}/>
+            <ProfileStatusWithHooks status={props.state.status} updateUserStatus={props.updateUserStatus}/>
             <h3>My posts</h3>
             <SendPost addPost={props.addPost}/>
             {postElement}
