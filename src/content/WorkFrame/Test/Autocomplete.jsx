@@ -2,7 +2,7 @@ import React from 'react';
 import Autosuggest from 'react-autosuggest';
 import * as axios from 'axios';
 import theme from './theme.module.css';
-import { connect } from 'react-redux'
+import {connect} from 'react-redux'
 
 class Autocomplete extends React.Component {
     constructor(props) {
@@ -14,7 +14,7 @@ class Autocomplete extends React.Component {
         // and they are initially empty because the Autosuggest is closed.
         this.state = {
             suggestions: [],
-            q: { query: '', limit: 10 }
+            q: {query: '', limit: 10}
         };
     }
 
@@ -47,20 +47,19 @@ class Autocomplete extends React.Component {
         </div>
     )
 
-    getObject = (parentObjectId, newValue, typeCode) => {
+    getObject = async (parentObjectId, newValue, typeCode) => {
         const instance = axios.create({
             baseURL: 'http://192.168.108.102:8084/'
         });
         let query = encodeURI(newValue.trim().charAt(0).toUpperCase() + newValue.trim().slice(1) + '%');
-        return instance.get(`fias?query=${query}&contentType=${this.props.contentType}&limit=${this.state.q.limit}&parentObjectId=${parentObjectId}&typeCode=${typeCode !== undefined ? typeCode : ''}`)
-            .then(response => {
-                this.props.setObject(response.data.result, this.props.contentType==='city'?this.props.name:this.props.contentType);
-                this.onSuggestionsFetchRequested({ value: this.state.value })
-            })
+        let getPar= `query=${query}&contentType=${this.props.contentType}&limit=${this.state.q.limit}&parentObjectId=${parentObjectId}&typeCode=${typeCode !== undefined ? typeCode : ''}`
+        let response = await instance.get(`fias?${getPar}`)
+        this.props.setObject(response.data.result, this.props.contentType === 'city' ? this.props.name : this.props.contentType);
+        this.onSuggestionsFetchRequested({value: this.state.value})
     }
 
-    onChange = (event, { newValue }) => {
-        this.props.test2( this.props.setValue(newValue, this.props.contentType==='city'?this.props.name:this.props.contentType))
+    onChange = (event, {newValue}) => {
+        this.props.test2(this.props.setValue(newValue, this.props.contentType === 'city' ? this.props.name : this.props.contentType))
         switch (this.props.contentType) {
             case 'region':
                 this.getObject(0, newValue)
@@ -97,20 +96,20 @@ class Autocomplete extends React.Component {
             case 'street':
                 if (this.props.adress.village.object !== '') {
                     this.getObject(this.props.adress.village.object.id, newValue)
-                }else if(this.props.adress.settlement.object !== ''){
+                } else if (this.props.adress.settlement.object !== '') {
                     this.getObject(this.props.adress.settlement.object.id, newValue)
-                }else if(this.props.adress.city.object !== ''){
+                } else if (this.props.adress.city.object !== '') {
                     this.getObject(this.props.adress.city.object.id, newValue)
                 }
                 return null
             case 'building':
-                if(this.props.adress.street.object !== ''){
+                if (this.props.adress.street.object !== '') {
                     this.getObject(this.props.adress.street.object.id, newValue)
-                }else if(this.props.adress.village.object !== ''){
+                } else if (this.props.adress.village.object !== '') {
                     this.getObject(this.props.adress.village.object.id, newValue)
-                }else if(this.props.adress.settlement.object !== ''){
+                } else if (this.props.adress.settlement.object !== '') {
                     this.getObject(this.props.adress.settlement.object.id, newValue)
-                }else if(this.props.adress.city.object !== ''){
+                } else if (this.props.adress.city.object !== '') {
                     this.getObject(this.props.adress.city.object.id, newValue)
                 }
                 return null
@@ -125,7 +124,7 @@ class Autocomplete extends React.Component {
 
     // Autosuggest will call this function every time you need to update suggestions.
     // You already implemented this logic above, so just use it.
-    onSuggestionsFetchRequested = ({ value }) => {
+    onSuggestionsFetchRequested = ({value}) => {
         this.setState({
             suggestions: this.getSuggestions(value)
         });
@@ -141,7 +140,7 @@ class Autocomplete extends React.Component {
     render() {
         console.log('AUTOCOMPLETE WAS RENDERED')
         let value = this.props.value
-        const suggestions  = this.state.suggestions;
+        const suggestions = this.state.suggestions;
         // Autosuggest will pass through all these props to the input.    
         const inputProps = {
             value,
@@ -167,7 +166,7 @@ class Autocomplete extends React.Component {
 let mapDispatchToProps = (dispatch) => {
     return {
         test: (param) => dispatch(param),
-        test2:(param)=>dispatch(param)
+        test2: (param) => dispatch(param)
     }
 }
 
