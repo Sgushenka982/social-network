@@ -1,25 +1,22 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
 import * as serviceWorker from './serviceWorker';
-import store from './Redux/redux-store';
-import {Provider} from 'react-redux';
-let rerenderTree=()=>{
-  ReactDOM.render(
-    <Provider store={store}>
-      <App/>
-    </Provider>
-    ,document.getElementById('root')
-  );
-}
+import SamurayJSApp from "./App";
 
-rerenderTree(store.getState());
+//Закомментировано подключение к самодельному store
+// let rerenderTree=()=>{
+
+ReactDOM.render(<SamurayJSApp/>, document.getElementById('root'));
+
+// }
+
+/*rerenderTree(store.getState());
 
 store.subscribe(()=>{
   let state = store.getState();
   rerenderTree(state);
-})
+})*/
 
 
 // If you want your app to work offline and load faster, you can change
