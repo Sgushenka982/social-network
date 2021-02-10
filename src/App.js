@@ -21,14 +21,11 @@ class App extends React.Component {
             return <Preloader/>
         }
         return (
-                <div className="App">
-                    <HeaderContainer/>
-                    <WorkFrame
-                        store={this.props.store}
-                        state={this.props.state}
-                        dispatch={this.props.dispatch}/>
-                    <NavbarContainer store={this.props.store}/>
-                </div>
+            <div className="App">
+                <HeaderContainer/>
+                <WorkFrame/>
+                <NavbarContainer/>
+            </div>
         );
     }
 }
